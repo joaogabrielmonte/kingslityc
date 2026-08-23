@@ -292,6 +292,30 @@ h4 {
   background: rgba(107, 175, 69, 0.08);
 }
 
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Form Fields */
+.form-input {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 12px 14px;
+  color: var(--text-heading);
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(107, 175, 69, 0.15);
+}
+
 .section {
   padding: 96px 0;
 }

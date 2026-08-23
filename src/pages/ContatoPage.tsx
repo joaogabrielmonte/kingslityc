@@ -182,8 +182,8 @@ export const ContatoPage: React.FC = () => {
                 size={34}
                 style={{
                   position: "absolute",
-                  top: "-28px",
-                  left: "-10px",
+                  top: "-26px",
+                  left: "-24px",
                   transform: "rotate(-22deg)",
                   color: "var(--accent-sapphire)",
                 }}
@@ -430,16 +430,7 @@ export const ContatoPage: React.FC = () => {
                         setFormData({ ...formData, name: e.target.value })
                       }
                       placeholder="Seu nome"
-                      style={{
-                        width: "100%",
-                        background: "var(--bg-primary)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "6px",
-                        padding: "12px 14px",
-                        color: "var(--text-heading)",
-                        fontSize: "14px",
-                        outline: "none",
-                      }}
+                      className="form-input"
                     />
                   </div>
 
@@ -470,16 +461,7 @@ export const ContatoPage: React.FC = () => {
                           setFormData({ ...formData, email: e.target.value })
                         }
                         placeholder="email@empresa.com"
-                        style={{
-                          width: "100%",
-                          background: "var(--bg-primary)",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
-                          borderRadius: "6px",
-                          padding: "12px 14px",
-                          color: "var(--text-heading)",
-                          fontSize: "14px",
-                          outline: "none",
-                        }}
+                        className="form-input"
                       />
                     </div>
 
@@ -501,16 +483,7 @@ export const ContatoPage: React.FC = () => {
                           setFormData({ ...formData, company: e.target.value })
                         }
                         placeholder="Nome da empresa"
-                        style={{
-                          width: "100%",
-                          background: "var(--bg-primary)",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
-                          borderRadius: "6px",
-                          padding: "12px 14px",
-                          color: "var(--text-heading)",
-                          fontSize: "14px",
-                          outline: "none",
-                        }}
+                        className="form-input"
                       />
                     </div>
                   </div>
@@ -534,16 +507,7 @@ export const ContatoPage: React.FC = () => {
                           serviceType: e.target.value,
                         })
                       }
-                      style={{
-                        width: "100%",
-                        background: "var(--bg-primary)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "6px",
-                        padding: "12px 14px",
-                        color: "var(--text-heading)",
-                        fontSize: "14px",
-                        outline: "none",
-                      }}
+                      className="form-input"
                     >
                       <option value="protheus">
                         Desenvolvimento TOTVS Protheus & ERP
@@ -575,17 +539,8 @@ export const ContatoPage: React.FC = () => {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       placeholder="Descreva a demanda ou necessidade da sua empresa..."
-                      style={{
-                        width: "100%",
-                        background: "var(--bg-primary)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "6px",
-                        padding: "12px 14px",
-                        color: "var(--text-heading)",
-                        fontSize: "14px",
-                        outline: "none",
-                        resize: "vertical",
-                      }}
+                      className="form-input"
+                      style={{ resize: "vertical" }}
                     />
                   </div>
 
