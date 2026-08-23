@@ -84,11 +84,8 @@ export const ContatoPage: React.FC = () => {
             >
               <Crown
                 size={34}
+                className="hero-crown-icon"
                 style={{
-                  position: "absolute",
-                  top: "-26px",
-                  left: "-24px",
-                  transform: "rotate(-22deg)",
                   color: "var(--accent-sapphire)",
                 }}
               />

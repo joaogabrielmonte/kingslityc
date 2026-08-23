@@ -570,7 +570,15 @@ export const HomePage: React.FC = () => {
                     }}
                   />
                 </div>
-                {openFaq === idx && (
+                <div
+                  style={{
+                    maxHeight: openFaq === idx ? "240px" : "0px",
+                    opacity: openFaq === idx ? 1 : 0,
+                    overflow: "hidden",
+                    transition:
+                      "max-height 0.35s ease, opacity 0.25s ease",
+                  }}
+                >
                   <p
                     style={{
                       marginTop: "14px",
@@ -583,7 +591,7 @@ export const HomePage: React.FC = () => {
                   >
                     {faq.a}
                   </p>
-                )}
+                </div>
               </div>
             ))}
           </div>

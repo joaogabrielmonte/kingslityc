@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
       ? "2px solid var(--accent-primary)"
       : "2px solid transparent",
     paddingBottom: "4px",
-    transition: "color 0.2s ease",
+    transition: "color 0.2s ease, border-color 0.25s ease",
   });
 
   return (
@@ -96,15 +96,6 @@ export const Navbar: React.FC = () => {
             {item.label}
           </NavLink>
         ))}
-        <Link
-          to="/contato"
-          className="btn btn-primary"
-          style={{ marginTop: "16px", justifyContent: "center" }}
-          onClick={() => setMobileOpen(false)}
-        >
-          <span>Falar Conosco</span>
-          <ArrowRight size={16} />
-        </Link>
       </div>
     </header>
   );
