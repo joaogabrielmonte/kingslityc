@@ -36,7 +36,57 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API Routes
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'online', brand: 'KINGSLITYC', recipient: RECIPIENT_EMAIL, timestamp: new Date() });
+  const payload = { status: 'online', brand: 'KINGSLITYC', timestamp: new Date().toISOString() };
+
+  const wantsJson = req.query.format === 'json' || req.accepts(['html', 'json']) === 'json';
+  if (wantsJson) {
+    return res.json(payload);
+  }
+
+  res.send(`<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>KINGSLITYC · Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f6f7f5;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e7e9e4;
+      border-top: 3px solid #6baf45;
+      border-radius: 12px;
+      padding: 40px 48px;
+      text-align: center;
+      min-width: 280px;
+    }
+    .brand { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #6baf45; text-transform: uppercase; margin-bottom: 20px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 9999px; background: rgba(107,175,69,0.1); color: #317032; font-weight: 700; font-size: 15px; margin-bottom: 16px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #6baf45; box-shadow: 0 0 0 rgba(107,175,69,0.5); animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(107,175,69,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(107,175,69,0); }
+      100% { box-shadow: 0 0 0 0 rgba(107,175,69,0); }
+    }
+    .timestamp { font-size: 13px; color: #9ca3af; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">KINGSLITYC</div>
+    <div class="badge"><span class="dot"></span> Sistema Online</div>
+    <div class="timestamp">${payload.timestamp}</div>
+  </div>
+</body>
+</html>`);
 });
 
 // API: Contact Form Endpoint
@@ -86,7 +136,6 @@ app.post('/api/contact', async (req, res) => {
 
   res.json({
     success: true,
-    recipient: RECIPIENT_EMAIL,
     emailSent: emailSent,
     emailError: emailError,
     message: `Mensagem registrada no servidor KINGSLITYC!`,
