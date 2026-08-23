@@ -1,0 +1,7 @@
+node_modules
+dist
+emails-dist
+.git
+.env
+.env.local
+*.log

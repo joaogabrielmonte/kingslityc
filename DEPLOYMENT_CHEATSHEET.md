@@ -59,7 +59,36 @@ ssh -i "C:\Users\gabriel\Documents\oraclekeys\ssh-key-2026-03-27.key" ubuntu@147
 
 ---
 
-## 3. Segurança Aplicada na Landing Page (Nginx Proxy Manager)
+## 3. Atualizar Backend (API de Contato / Resend)
+
+O backend (`server.js`, rota `/api/contact`) roda como um container Docker separado
+(`kingslityc_api`), na mesma rede `proxy` do nginx-proxy-manager. Ele **não** faz parte
+do build estático (`dist/`) — precisa ser atualizado à parte sempre que `server.js` ou
+`src/emails/` mudarem.
+
+```bash
+# 1. Enviar os arquivos do backend para a VPS
+scp -i "C:\Users\gabriel\Documents\oraclekeys\ssh-key-2026-03-27.key" Dockerfile package.json package-lock.json server.js ubuntu@147.15.72.151:/opt/kingslityc-site/api/
+scp -i "C:\Users\gabriel\Documents\oraclekeys\ssh-key-2026-03-27.key" src/emails/*.tsx ubuntu@147.15.72.151:/opt/kingslityc-site/api/src/emails/
+
+# 2. Rebuildar e reiniciar o container na VPS
+ssh -i "C:\Users\gabriel\Documents\oraclekeys\ssh-key-2026-03-27.key" ubuntu@147.15.72.151 "cd /opt/kingslityc-site && sudo docker compose build kingslityc_api && sudo docker compose up -d kingslityc_api"
+```
+
+O `.env` de produção (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `CONTACT_RECIPIENT_EMAIL`)
+fica em `/opt/kingslityc-site/api/.env` na VPS — só precisa reenviar se essas variáveis
+mudarem.
+
+A rota `/api` do domínio `kingslityc.com.br` é roteada pro container via **Custom
+Location** no nginx-proxy-manager (`http://147.15.72.151:81/`): edite o Proxy Host de
+`kingslityc.com.br` → aba **Custom Locations** → `/api` → `kingslityc_api:3000`.
+
+> Homologação (staging) ainda não tem esse backend configurado — o `/api/contact` só
+> funciona em produção por enquanto.
+
+---
+
+## 4. Segurança Aplicada na Landing Page (Nginx Proxy Manager)
 
 Foram aplicados **Headers HTTP de Segurança** para proteger o site contra ataques comuns:
 
