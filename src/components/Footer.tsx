@@ -147,13 +147,6 @@ export const Footer: React.FC = () => {
             >
               KINGSLITYC Tecnologia
               <br />
-              <a
-                href="mailto:contato@kingslityc.com.br"
-                style={{ color: "var(--accent-sapphire)", textDecoration: "none" }}
-              >
-                contato@kingslityc.com.br
-              </a>
-              <br />
               Recife - PE, Brasil
             </p>
           </div>

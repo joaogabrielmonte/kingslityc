@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Mail,
   Phone,
   MapPin,
   Send,
@@ -142,49 +141,6 @@ export const ContatoPage: React.FC = () => {
                   gap: "24px",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "16px",
-                  }}
-                >
-                  <div
-                    style={{
-                      background: "rgba(107, 175, 69, 0.15)",
-                      padding: "12px",
-                      borderRadius: "8px",
-                      color: "var(--accent-sapphire)",
-                    }}
-                  >
-                    <Mail size={22} />
-                  </div>
-                  <div>
-                    <span
-                      style={{
-                        fontSize: "13px",
-                        color: "var(--text-muted)",
-                        display: "block",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      E-mail Direto
-                    </span>
-                    <a
-                      href="mailto:contato@kingslityc.com.br"
-                      style={{
-                        fontSize: "16px",
-                        color: "var(--text-heading)",
-                        fontWeight: 600,
-                        textDecoration: "none",
-                      }}
-                    >
-                      contato@kingslityc.com.br
-                    </a>
-                  </div>
-                </div>
-
                 <div
                   style={{
                     display: "flex",

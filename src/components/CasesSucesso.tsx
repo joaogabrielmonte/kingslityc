@@ -9,6 +9,8 @@ import {
   ArrowUpRight,
   Zap,
   Monitor,
+  HeartPulse,
+  FileText,
 } from "lucide-react";
 
 export const CasesSucesso: React.FC = () => {
@@ -67,6 +69,34 @@ export const CasesSucesso: React.FC = () => {
         "Interface adaptada à operação e logística do cliente",
         "Integração com sistemas já existentes (ex: Protheus)",
         "Foco em velocidade e clareza para o usuário final",
+      ],
+    },
+    {
+      title: "Plataforma Multidisciplinar de Saúde & Performance",
+      client: "Nutrição, Fisioterapia & Educação Física",
+      metric: "3 Especialidades, 1 Plataforma",
+      category: "Sistema Multidisciplinar",
+      icon: HeartPulse,
+      description:
+        "Sistema interno para equipes multidisciplinares — nutricionista, fisioterapeuta e educador físico — acompanharem juntos progresso, treinos, performance e dietas de pacientes e atletas.",
+      results: [
+        "Acompanhamento unificado entre nutrição, fisioterapia e educação física",
+        "Registro de treinos, performance e evolução física",
+        "Planos de dieta e progresso integrados num só histórico",
+      ],
+    },
+    {
+      title: "Geração de PDF & Landing Pages sob Demanda",
+      client: "Ferramentas Internas & Marketing",
+      metric: "Documentos & Páginas em Minutos",
+      category: "Ferramentas de Produtividade",
+      icon: FileText,
+      description:
+        "Ferramentas internas para geração automática de documentos em PDF (relatórios, contratos, propostas) e construção rápida de landing pages para campanhas e captação de leads.",
+      results: [
+        "Geração automática de PDFs personalizados",
+        "Landing pages publicadas em minutos, sem depender de dev",
+        "Templates reutilizáveis por campanha ou cliente",
       ],
     },
   ];
