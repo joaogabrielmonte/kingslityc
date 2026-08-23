@@ -1,17 +1,28 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const { Resend } = require('resend');
 
-let nodemailer = null;
+let renderContactEmailHtml = null;
 try {
-  nodemailer = require('nodemailer');
+  ({ renderContactEmailHtml } = require('./emails-dist/contact-email.js'));
 } catch (e) {
-  console.log('ℹ️ Nodemailer não instalado. Instale com: npm install nodemailer');
+  console.log('ℹ️ Template de e-mail não compilado. Rode: npm run build:email');
 }
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const RECIPIENT_EMAIL = 'joaodevtool@gmail.com';
+const RECIPIENT_EMAIL = process.env.CONTACT_RECIPIENT_EMAIL || 'joaogabrielmonteg41@gmail.com';
+const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'KINGSLITYC <onboarding@resend.dev>';
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+const SERVICE_NAME_MAP = {
+  protheus: 'Desenvolvimento ERP TOTVS Protheus',
+  software: 'Desenvolvimento de Software Sob Encomenda',
+  hardware: 'Hardware & Sistemas Embarcados IoT',
+};
 
 app.use(cors());
 app.use(express.json());
@@ -28,58 +39,46 @@ app.get('/api/health', (req, res) => {
 // API: Contact Form Endpoint
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, company, serviceType, message } = req.body;
-  
+  const serviceName = SERVICE_NAME_MAP[serviceType] || serviceType;
+
   console.log(`\n==================================================`);
   console.log(`📩 NOVO ATENDIMENTO SOLICITADO NO SITE KINGSLITYC`);
   console.log(`🎯 DESTINATÁRIO: ${RECIPIENT_EMAIL}`);
   console.log(`👤 NOME DO CLIENTE: ${name}`);
   console.log(`📧 E-MAIL DO CLIENTE: ${email}`);
   console.log(`🏢 EMPRESA: ${company || 'Não informada'}`);
-  console.log(`🛠️ SOLUÇÃO: ${serviceType}`);
+  console.log(`🛠️ SOLUÇÃO: ${serviceName}`);
   console.log(`💬 MENSAGEM: ${message}`);
   console.log(`==================================================\n`);
 
   let emailSent = false;
   let emailError = null;
 
-  // Se Nodemailer e credenciais SMTP estiverem configuradas
-  if (nodemailer && process.env.GMAIL_USER && process.env.GMAIL_PASS) {
+  // Se Resend e o template estiverem configurados
+  if (resend && renderContactEmailHtml) {
     try {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_PASS, // Senha de App do Gmail
-        },
-      });
+      const html = await renderContactEmailHtml({ name, email, phone, company, serviceName, message });
 
-      await transporter.sendMail({
-        from: `KINGSLITYC Site <${process.env.GMAIL_USER}>`,
+      const { error } = await resend.emails.send({
+        from: RESEND_FROM_EMAIL,
         to: RECIPIENT_EMAIL,
         replyTo: email,
         subject: `[Atendimento KINGSLITYC] Novo Contato de ${name} (${company || 'Pessoa Física'})`,
-        html: `
-          <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #050814; color: #ffffff; border-radius: 8px;">
-            <h2 style="color: #0066ff; border-bottom: 2px solid #38bdf8; padding-bottom: 10px;">Novo Atendimento Solicitado no Site KINGSLITYC</h2>
-            <p><strong>Nome:</strong> ${name}</p>
-            <p><strong>E-mail:</strong> ${email}</p>
-            <p><strong>Empresa:</strong> ${company || 'Não informada'}</p>
-            <p><strong>Solução Desejada:</strong> ${serviceType}</p>
-            <p><strong>Mensagem:</strong></p>
-            <blockquote style="background: rgba(255,255,255,0.05); padding: 15px; border-left: 4px solid #0066ff; color: #94a3b8;">
-              ${message}
-            </blockquote>
-            <hr style="border-color: rgba(255,255,255,0.1);" />
-            <p style="font-size: 12px; color: #64748b;">Enviado via Servidor Node.js KINGSLITYC</p>
-          </div>
-        `,
+        html,
       });
+
+      if (error) {
+        throw new Error(error.message || 'Falha desconhecida ao enviar via Resend');
+      }
+
       emailSent = true;
       console.log(`✅ E-MAIL DISPARADO COM SUCESSO PARA ${RECIPIENT_EMAIL}!`);
     } catch (err) {
       emailError = err.message;
-      console.error(`❌ Erro ao enviar e-mail via SMTP:`, err.message);
+      console.error(`❌ Erro ao enviar e-mail via Resend:`, err.message);
     }
+  } else if (!resend) {
+    console.log('ℹ️ RESEND_API_KEY não configurada. Mensagem apenas registrada no servidor.');
   }
 
   res.json({

@@ -1,5 +1,6 @@
 node_modules
 dist
+emails-dist
 .env
 .env.local
 *.log

@@ -25,118 +25,22 @@ export const ContatoPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const FORMSUBMIT_TOKEN = "1fbc3259f0576c6581854b55cd080241";
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    const serviceNameMap: Record<string, string> = {
-      protheus: "Desenvolvimento ERP TOTVS Protheus",
-      software: "Desenvolvimento de Software Sob Encomenda",
-      hardware: "Hardware & Sistemas Embarcados IoT",
-    };
-
-    const serviceName =
-      serviceNameMap[formData.serviceType] || formData.serviceType;
-
-    // Nubank / Stripe style Corporate HTML Email Template
-    const customHtmlEmail = `
-      <div style="background-color: #f1f5f9; padding: 40px 12px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1e293b;">
-        <div style="max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-          
-          <div style="background: #040711; padding: 32px 24px; text-align: center; border-bottom: 3px solid #6BAF45;">
-            <span style="color: #A5D66C; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 6px;">KINGSLITYC TECNOLOGIA</span>
-            <h1 style="color: #ffffff; font-size: 22px; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Novo Atendimento de Solução</h1>
-          </div>
-
-          <div style="padding: 32px 28px;">
-            <p style="font-size: 15px; color: #475569; margin-top: 0; margin-bottom: 24px;">
-              Uma nova solicitação de atendimento foi registrada através do portal KINGSLITYC:
-            </p>
-
-            <div style="background: #f8fafc; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
-              
-              <div style="margin-bottom: 16px;">
-                <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Solicitante</span>
-                <span style="font-size: 16px; color: #0f172a; font-weight: 700;">${formData.name}</span>
-              </div>
-
-              <div style="margin-bottom: 16px;">
-                <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">E-mail do Cliente</span>
-                <a href="mailto:${formData.email}" style="font-size: 15px; color: #6BAF45; font-weight: 600; text-decoration: none;">${formData.email}</a>
-              </div>
-
-              <div style="margin-bottom: 16px;">
-                <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Empresa / Organização</span>
-                <span style="font-size: 15px; color: #334155; font-weight: 600;">${formData.company || "Pessoa Física"}</span>
-              </div>
-
-              <div>
-                <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Solução Desejada</span>
-                <span style="font-size: 15px; color: #6BAF45; font-weight: 700; background: rgba(107, 175, 69, 0.08); padding: 4px 10px; border-radius: 6px; display: inline-block;">${serviceName}</span>
-              </div>
-
-            </div>
-
-            <div style="margin-bottom: 24px;">
-              <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Mensagem da Demanda</span>
-              <div style="background: #0f172a; color: #f1f5f9; padding: 18px; border-radius: 10px; font-size: 14px; line-height: 1.6; border-left: 4px solid #6BAF45;">
-                ${formData.message}
-              </div>
-            </div>
-
-          </div>
-
-          <div style="background: #040711; padding: 28px; text-align: center; color: #94a3b8; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.08);">
-            <p style="color: #ffffff; font-weight: 700; font-size: 15px; margin-top: 0; margin-bottom: 8px;">Abraços,<br />Equipe KINGSLITYC</p>
-            <p style="color: #64748b; font-size: 12px; margin-bottom: 16px; line-height: 1.5;">
-              Engenharia de Software • TOTVS Protheus ERP • Sistemas Embarcados & Hardware<br />
-              Recife - PE, Brasil
-            </p>
-          </div>
-
-        </div>
-      </div>
-    `;
-
     try {
-      // Send to FormSubmit with HTML auto-reply or direct HTML payload
-      const res = await fetch(
-        `https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            SOLICITANTE: formData.name,
-            "E-MAIL": formData.email,
-            EMPRESA: formData.company || "Pessoa Física",
-            SOLUÇÃO: serviceName,
-            DETALHES_MENSAGEM: formData.message,
-            _subject: `[ATENDIMENTO KINGSLITYC] ${formData.name} - ${formData.company || "Pessoa Física"}`,
-            _replyto: formData.email,
-            _captcha: "false",
-            _template: "box",
-            _autoresponse: customHtmlEmail,
-          }),
-        },
-      );
-
-      // Register in local Node.js backend
-      fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, htmlTemplate: customHtmlEmail }),
-      }).catch(() => {});
+        body: JSON.stringify(formData),
+      });
 
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setSubmitted(true);
+      if (!res.ok) {
+        throw new Error(`Falha no envio: ${res.status}`);
       }
+
+      setSubmitted(true);
     } catch (err) {
       console.error("Erro no formulário:", err);
       setSubmitted(true);
@@ -271,7 +175,7 @@ export const ContatoPage: React.FC = () => {
                       E-mail Direto
                     </span>
                     <a
-                      href="mailto:joaodevtool@gmail.com"
+                      href="mailto:contato@kingslityc.com.br"
                       style={{
                         fontSize: "16px",
                         color: "var(--text-heading)",
@@ -279,7 +183,7 @@ export const ContatoPage: React.FC = () => {
                         textDecoration: "none",
                       }}
                     >
-                      joaodevtool@gmail.com
+                      contato@kingslityc.com.br
                     </a>
                   </div>
                 </div>
@@ -385,8 +289,8 @@ export const ContatoPage: React.FC = () => {
                       lineHeight: "1.6",
                     }}
                   >
-                    Sua solicitação foi enviada com sucesso para{" "}
-                    <strong>joaodevtool@gmail.com</strong>.
+                    Sua solicitação foi enviada com sucesso para a nossa
+                    equipe de atendimento.
                   </p>
                   <p
                     style={{
