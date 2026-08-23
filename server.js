@@ -19,9 +19,12 @@ const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'KINGSLITYC <onboardi
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const SERVICE_NAME_MAP = {
-  protheus: 'Desenvolvimento ERP TOTVS Protheus',
   software: 'Desenvolvimento de Software Sob Encomenda',
+  multitenant: 'Plataforma Multi-tenant / SaaS',
+  eventos: 'Sistema de Convites & Check-in de Eventos',
+  erp: 'Mini ERP Sob Medida',
   hardware: 'Hardware & Sistemas Embarcados IoT',
+  protheus: 'Integrações & APIs para TOTVS Protheus',
 };
 
 app.use(cors());

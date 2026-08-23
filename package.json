@@ -2,7 +2,7 @@
   "name": "kingslityc-fullstack-node",
   "private": true,
   "version": "1.0.0",
-  "description": "Plataforma Corporate KINGSLITYC - Software, Consultoria Protheus e Hardware",
+  "description": "Plataforma Corporate KINGSLITYC - Software House de Sistemas Sob Encomenda e Hardware",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

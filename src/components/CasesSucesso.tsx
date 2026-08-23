@@ -8,50 +8,65 @@ import {
   Layers,
   ArrowUpRight,
   Zap,
+  Monitor,
 } from "lucide-react";
 
 export const CasesSucesso: React.FC = () => {
   const cases = [
     {
-      title: "Otimização ERP Protheus & WMS Industrial",
-      client: "Grupo Industrial Multisetor",
-      metric: "+45% Eficiência Operacional",
-      category: "Desenvolvimento TOTVS Protheus",
-      icon: Server,
+      title: "Ponto Eletrônico Multi-tenant",
+      client: "Plataforma SaaS Própria",
+      metric: "Múltiplas Empresas, 1 Sistema",
+      category: "Sistema Multi-tenant",
+      icon: Building2,
       description:
-        "Redesenho de rotinas de expedição e integração do ERP TOTVS Protheus com coletor de dados WMS em tempo real, eliminando erros de estorno e faturamento.",
+        "Plataforma de controle de ponto que atende várias empresas de forma isolada e segura na mesma infraestrutura, com gestão de jornada, relatórios e conformidade trabalhista.",
       results: [
-        "Zerar divergências no inventário de estoque",
-        "Faturamento automatizado de pedidos em lote",
-        "Integração contínua sem travamento de tabelas",
+        "Isolamento completo de dados por empresa",
+        "Registro de ponto em tempo real",
+        "Relatórios e exportação para folha de pagamento",
       ],
     },
     {
-      title: "Sistema Embarcado IoT & Monitoramento Físico",
-      client: "Operadora de Logística Crítica",
-      metric: "99.9% Uptime de Hardware",
-      category: "Sistemas Embarcados & Hardware",
-      icon: Cpu,
-      description:
-        "Dimensionamento e produção de hardware dedicado com sensores térmicos e placas embarcadas para monitoramento contínuo em campo.",
-      results: [
-        "Diagnóstico preventivo de falhas de hardware",
-        "Comunicação contínua via barramento industrial",
-        "Placa física resistente a alta temperatura",
-      ],
-    },
-    {
-      title: "Portal Web Corporativo sob Encomenda",
-      client: "Empresa de Serviços & Distribuição",
-      metric: "10x Mais Rapidez de Atendimento",
+      title: "Sistema de Convites & Check-in de Eventos",
+      client: "Gestão de Eventos",
+      metric: "Bipagem em Tempo Real",
       category: "Sistemas sob Demanda",
+      icon: Zap,
+      description:
+        "Plataforma para cadastro de convidados, envio automatizado de convites e controle de entrada com bipagem (check-in) no dia do evento.",
+      results: [
+        "Envio automático de convites digitais",
+        "Check-in por leitura de código na entrada",
+        "Painel de acompanhamento em tempo real",
+      ],
+    },
+    {
+      title: "Mini ERP Sob Medida",
+      client: "Gestão Empresarial",
+      metric: "Processos Unificados",
+      category: "Sistemas de Gestão",
       icon: Layers,
       description:
-        "Desenvolvimento de plataforma web sob medida para gestão de solicitações, integração de chamados técnicos e controle financeiro.",
+        "Sistema de gestão compacto e sob medida — cadastros, estoque, financeiro e relatórios — construído de acordo com a rotina real da empresa, sem módulos que ela não usa.",
       results: [
-        "Interface intuitiva de alta velocidade",
-        "Integração direta com o banco de dados corporativo",
-        "Arquitetura em nuvem com alta disponibilidade",
+        "Módulos sob medida para a operação do cliente",
+        "Cadastros, estoque e financeiro integrados",
+        "Relatórios gerenciais em tempo real",
+      ],
+    },
+    {
+      title: "Telas & Painéis sob Medida",
+      client: "Interfaces Corporativas",
+      metric: "Sob Medida pra Cada Operação",
+      category: "UI/UX Corporativo",
+      icon: Monitor,
+      description:
+        "Telas e painéis desenvolvidos conforme a logística e o fluxo de trabalho de cada cliente — de dashboards operacionais a interfaces conectadas a sistemas como o TOTVS Protheus.",
+      results: [
+        "Interface adaptada à operação e logística do cliente",
+        "Integração com sistemas já existentes (ex: Protheus)",
+        "Foco em velocidade e clareza para o usuário final",
       ],
     },
   ];

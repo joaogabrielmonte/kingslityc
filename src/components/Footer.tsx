@@ -30,8 +30,9 @@ export const Footer: React.FC = () => {
                 lineHeight: "1.6",
               }}
             >
-              Engenharia de software sob medida, desenvolvimento de rotinas em
-              TOTVS Protheus, sistemas embarcados e manutenção de hardware.
+              Software house de sistemas sob encomenda: plataformas
+              multi-tenant, ERPs sob medida, integrações e APIs, sistemas
+              embarcados e manutenção de hardware.
             </p>
           </div>
 
@@ -110,7 +111,7 @@ export const Footer: React.FC = () => {
                 letterSpacing: "0.05em",
               }}
             >
-              Módulos Protheus
+              O Que Construímos
             </h4>
             <ul
               style={{
@@ -122,10 +123,10 @@ export const Footer: React.FC = () => {
                 color: "var(--text-body)",
               }}
             >
-              <li>Faturamento (MATA410)</li>
-              <li>Estoque & WMS (MATA241)</li>
-              <li>Financeiro & CNAB (FINA050)</li>
-              <li>WebServices & APIs REST</li>
+              <li>Ponto Eletrônico Multi-tenant</li>
+              <li>Convites & Check-in de Eventos</li>
+              <li>Mini ERP Sob Medida</li>
+              <li>APIs & Integrações (Protheus)</li>
             </ul>
           </div>
 
@@ -176,7 +177,7 @@ export const Footer: React.FC = () => {
             reservados.
           </span>
           <span>
-            Recife - PE • Engenharia de Software, Protheus ERP & Hardware
+            Recife - PE • Engenharia de Software Sob Encomenda & Hardware
           </span>
         </div>
       </div>

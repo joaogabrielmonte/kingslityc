@@ -18,7 +18,7 @@ export const ContatoPage: React.FC = () => {
     email: "",
     phone: "",
     company: "",
-    serviceType: "protheus",
+    serviceType: "software",
     message: "",
   });
 
@@ -102,8 +102,8 @@ export const ContatoPage: React.FC = () => {
             }}
           >
             Entre em contato com nossa equipe técnica para solicitar
-            atendimento, esclarecer dúvidas sobre desenvolvimento Protheus ERP
-            ou dimensionar o projeto do seu sistema.
+            atendimento, esclarecer dúvidas sobre seu sistema sob encomenda
+            ou dimensionar o projeto da sua empresa.
           </p>
         </div>
       </section>
@@ -410,14 +410,23 @@ export const ContatoPage: React.FC = () => {
                       }
                       className="form-input"
                     >
-                      <option value="protheus">
-                        Desenvolvimento TOTVS Protheus & ERP
-                      </option>
                       <option value="software">
                         Desenvolvimento de Software Sob Encomenda
                       </option>
+                      <option value="multitenant">
+                        Plataforma Multi-tenant / SaaS
+                      </option>
+                      <option value="eventos">
+                        Sistema de Convites & Check-in de Eventos
+                      </option>
+                      <option value="erp">
+                        Mini ERP Sob Medida
+                      </option>
                       <option value="hardware">
                         Hardware & Sistemas Embarcados IoT
+                      </option>
+                      <option value="protheus">
+                        Integrações & APIs para TOTVS Protheus
                       </option>
                     </select>
                   </div>

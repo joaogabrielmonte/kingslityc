@@ -25,8 +25,8 @@ export const HomePage: React.FC = () => {
 
   const faqs = [
     {
-      q: "Como funciona o processo de desenvolvimento e consultoria para o TOTVS Protheus?",
-      a: "Nossa equipe realiza o diagnóstico da sua operação, desenha a arquitetura ideal e implementa customizações ou rotinas sem comprometer atualizações de versão padrão TOTVS.",
+      q: "Vocês desenvolvem sistemas multi-tenant (várias empresas em uma plataforma)?",
+      a: "Sim. É uma das nossas especialidades — plataformas como sistemas de ponto eletrônico e ERPs que atendem múltiplas empresas de forma isolada e segura na mesma infraestrutura.",
     },
     {
       q: "Qual é o prazo médio para entrega de um sistema web sob encomenda?",
@@ -55,11 +55,11 @@ export const HomePage: React.FC = () => {
             className="reveal-up"
           >
             <h1 className="heading-xl" style={{ marginBottom: "24px" }}>
-              Engenharia de Software,{" "}
+              Software House de{" "}
               <span style={{ color: "var(--accent-sapphire)" }}>
-                Desenvolvimento Protheus ERP
+                Sistemas Sob Encomenda
               </span>{" "}
-              & Sistemas Embarcados.
+              & Hardware.
             </h1>
 
             <p
@@ -73,9 +73,10 @@ export const HomePage: React.FC = () => {
                 marginRight: "auto",
               }}
             >
-              Soluções integradas de tecnologia: desenvolvimento sob encomenda
-              de software web, customizações e consultoria em ERP TOTVS
-              Protheus, sistemas embarcados IoT e manutenção física de hardware.
+              Construímos plataformas multi-tenant, ERPs sob medida, sistemas
+              de gestão de eventos, integrações e APIs para sistemas como o
+              TOTVS Protheus, sistemas embarcados IoT e manutenção física de
+              hardware.
             </p>
 
             <div
@@ -96,11 +97,11 @@ export const HomePage: React.FC = () => {
               </Link>
 
               <Link
-                to="/protheus"
+                to="/sistemas"
                 className="btn btn-outline"
                 style={{ padding: "14px 32px", fontSize: "15px" }}
               >
-                <span>Ver Desenvolvimento Protheus</span>
+                <span>Ver Sistemas Sob Encomenda</span>
               </Link>
             </div>
           </div>
@@ -128,12 +129,12 @@ export const HomePage: React.FC = () => {
               <div
                 style={{ fontSize: "36px", fontWeight: 800, color: "var(--text-heading)" }}
               >
-                TOTVS ERP
+                Multi-tenant
               </div>
               <div
                 style={{ fontSize: "14px", color: "var(--text-body)", marginTop: "4px" }}
               >
-                Consultoria & Desenvolvimento Protheus
+                Plataformas & Sistemas de Gestão
               </div>
             </div>
 
@@ -227,7 +228,7 @@ export const HomePage: React.FC = () => {
                 <Server size={24} />
               </div>
               <h3 className="heading-md" style={{ marginBottom: "12px" }}>
-                Desenvolvimento ERP Protheus
+                APIs & Integrações Protheus
               </h3>
               <p
                 style={{
@@ -237,9 +238,9 @@ export const HomePage: React.FC = () => {
                   lineHeight: "1.6",
                 }}
               >
-                Projetos e customizações para otimização de faturamento,
-                estoque, financeiro e integrações de sistema no ERP TOTVS
-                Protheus.
+                Desenvolvimento de APIs e telas modernas que se conectam ao
+                TOTVS Protheus, sem alterar o núcleo do ERP — otimizando
+                processos específicos com interfaces sob medida.
               </p>
               <Link
                 to="/protheus"
@@ -253,7 +254,7 @@ export const HomePage: React.FC = () => {
                   gap: "6px",
                 }}
               >
-                <span>Saiba mais sobre Protheus</span> <ArrowRight size={16} />
+                <span>Ver Integrações Protheus</span> <ArrowRight size={16} />
               </Link>
             </div>
 
